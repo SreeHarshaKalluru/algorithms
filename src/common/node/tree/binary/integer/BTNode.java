@@ -9,5 +9,10 @@ public class BTNode {
 	public BTNode(int d) {
 		this.d = d;
 	}
+
+	@Override
+	public String toString() {
+		return d + " ";
+	}
 	
 }
