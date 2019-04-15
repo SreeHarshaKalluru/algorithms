@@ -50,6 +50,11 @@ public class Main {
 		System.out.println(bt.leastCommonAncestor(10, 12));
 		System.out.println(bt.leastCommonAncestor(10, 22));
 		System.out.println(bt.leastCommonAncestor(4, 14));
+		bt.buildPerfectBinaryTree();
+		bt.printLevelOrder();
+		bt.reverseAlternatePerfectBT();
+		System.out.println("....");
+		bt.printLevelOrder();
 	}
 	
 }

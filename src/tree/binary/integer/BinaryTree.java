@@ -442,4 +442,69 @@ public class BinaryTree {
 		else if(curr.d > n1 && curr.d > n2) return leastCommonAncestor(curr.left, n1, n2);
 		else return curr.d;
 	}
+	
+	public void buildPerfectBinaryTree() {
+		root = new BTNode(1);
+		root.left = new BTNode(2);
+		root.right = new BTNode(3);
+		root.left.left = new BTNode(4);
+		root.left.right = new BTNode(5);
+		root.right.left = new BTNode(6);
+		root.right.right = new BTNode(7);
+		root.left.left.left = new BTNode(8);
+		root.left.left.right = new BTNode(9);
+		root.left.right.left = new BTNode(10);
+		root.left.right.right = new BTNode(11);
+		root.right.left.left = new BTNode(12);
+		root.right.left.right = new BTNode(13);
+		root.right.right.left = new BTNode(14);
+		root.right.right.right = new BTNode(15);
+	}
+	
+	public void reverseAlternatePerfectBT() {
+		
+		if(root == null) return;
+		int level=0;
+		Queue q = new Queue();
+		q.push(root);
+		stack.array.generic.Stack<BTNode> s = new stack.array.generic.Stack(10);
+		while(!q.isEmpty()) {
+			if(level%2 == 0) {
+				long noOfEle = q.size();
+				for(int i=0; i<noOfEle; i++) {
+					BTNode curr = q.peek();
+					s.push(curr);
+					if(!isLeaf(curr)) {
+						q.push(curr.left);
+						q.push(curr.right);
+					}
+				}
+			} else {
+				while(!s.isEmpty()) {
+					BTNode curr = s.pop();
+					curr.right = q.peek();
+					curr.left = q.peek();
+					swapChildren(curr.left, curr.right);
+					if(!isLeaf(curr.left)) {
+						q.push(curr.left.left);
+						q.push(curr.left.right);
+						q.push(curr.right.left);
+						q.push(curr.right.right);
+					}
+				}
+			} 
+			level++;
+//			if(level == 2) break;
+		}
+	}
+
+	private void swapChildren(BTNode left, BTNode right) {
+		BTNode temp = left.left;
+		left.left = right.left;
+		right.left = temp;
+		
+		temp = left.right;
+		left.right = right.right;
+		right.right = temp;
+	}
 }
